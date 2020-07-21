@@ -1,0 +1,17 @@
+.btn{
+  background-color: aqua;
+  outline: none;
+  border: none;
+  font-size: 26px;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  min-width: 100px;
+  &:hover{
+    opacity: 0.9;
+  }
+  &:active{
+    background-color: rgba(0, 255, 255, 0.51);
+  }
+}
