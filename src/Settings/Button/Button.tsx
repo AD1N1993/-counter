@@ -3,9 +3,8 @@ import s from "./Button.module.scss"
 
 type ButtonTypeProps = {
     name: string
-    countValue: number | string
-    setStateBtn: () => void
-    maxValue?:number
+    countValue: number
+    setStateBtn?: () => void
 }
 
 export const Button = (props: ButtonTypeProps) => {
@@ -15,9 +14,9 @@ export const Button = (props: ButtonTypeProps) => {
             <button
                 className={s.btn}
                 onClick={props.setStateBtn}
-                disabled={(props.name === "inc" && props.countValue === props.maxValue)
+                disabled={(props.name === "inc" && props.countValue === 5)
                 ||(props.name === "reset" && props.countValue === 0)
-                    ||(props.countValue ==="enter values and press set")
+
                 }>
                 {props.name}
             </button>

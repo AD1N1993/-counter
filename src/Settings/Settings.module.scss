@@ -5,15 +5,18 @@
   border: 2px solid aqua;
   border-radius: 10px;
   background-color: #000000;
+  margin-right: 50px;
 }
 
 .display{
-  display:flex;
+ display: flex;
+  flex-direction: column;
+  align-items:  center;
   justify-content: center;
-  align-items: center;
   width: 450px;
   height: 250px;
-  background-color: aqua;
+  background-color: #000000;
+  border: 1px solid aqua;
   border-radius: 5px;
   margin: 10px auto;
 }
@@ -34,6 +37,25 @@
   border: 2px solid aqua;
   border-radius: 5px;
   margin: 0 auto;
+}
+
+.label{
+  font-size: 26px;
+  font-weight: 700;
+  color: aqua;
+  margin-bottom: 40px;
+  text-align: right;
+}
+
+.input{
+  border: 2px solid aqua;
+  border-radius: 2px;
+  text-align: center;
+  padding: 5px;
+  font-size: 20px;
+  &:focus{
+    outline: none;
+  }
 }
 
 .completed{
