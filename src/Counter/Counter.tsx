@@ -5,23 +5,26 @@ import {CounterStateType} from "../App";
 
 type CountValueTypeProps = {
     counterState: CounterStateType
-    setCountValue: (value: number) => void
+    resetCountValue: (value: number) => void
+
 }
 
 export const Counter = (props: CountValueTypeProps) => {
 
     const inc = () => {
         let newCountValue = props.counterState.countValue;
-        if(typeof (newCountValue) ==="number") props.setCountValue(newCountValue + 1);
+        if(typeof (newCountValue) ==="number") props.resetCountValue(newCountValue + 1);
     }
     const reset = () => {
-        props.setCountValue(props.counterState.startValue);
+        props.resetCountValue(props.counterState.startValue);
     }
 
     return (
         <div className={s.wrapper}>
             <div className={s.display}>
-                <span className={`${s.value} ${props.counterState.countValue === props.counterState.maxValue ? s.completed : ""}`}>
+                <span className={`${s.value} 
+                ${props.counterState.countValue === props.counterState.maxValue ? s.completed : "" 
+                    || props.counterState.countValue === "incorrect value"? s.completed : ""}`}>
                     {props.counterState.countValue}
                 </span>
             </div>
