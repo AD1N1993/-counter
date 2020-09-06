@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.scss';
 import {Counter} from "./Counter/Counter";
 import {Settings} from "./Settings/Settings";
@@ -8,7 +8,7 @@ export type CounterStateType = {
     maxValue: number,
     startValue: number
 }
-type LcStateType = {
+export type LcStateType = {
     maxValue: number
     startValue: number
 }
@@ -21,14 +21,17 @@ function App() {
         return defaultState;
     }
 
-    const state: LcStateType = restoreState<LcStateType>("value", {maxValue: 0, startValue:0});
-
+    const state: LcStateType = restoreState<LcStateType>("value", {maxValue: 0, startValue: 0});
 
     let [counterState, setCounterState] = useState<CounterStateType>({
         countValue: "enter values and press set",
         maxValue: state.maxValue,
         startValue: state.startValue,
     })
+
+    // useEffect(() => {
+    //     checkedIncorrectValues();
+    // }, [counterState.countValue])
 
     function changeCountValue(value: number) {
         counterState.countValue = value;
@@ -41,23 +44,39 @@ function App() {
             || counterState.maxValue < 0
             || counterState.startValue < 0) {
             counterState.countValue = "incorrect value";
+            debugger
             setCounterState({...counterState});
         }
     }
 
-    function onChangeInputMaxValue(value: string) {
-        counterState.maxValue = +value
+
+    //  function onChangeInput(value: string, title: string) {
+    //     let copyState = {...counterState};
+    //     console.log(copyState )
+    //     if (title === "max") {
+    //         copyState.maxValue = +value
+    //     } else if (title === "min") {
+    //         copyState.startValue = +value
+    //     } else {
+    //         alert("Get Error Title")
+    //     }
+    //     copyState.countValue = "enter values and press set";
+    //     setCounterState(copyState)
+    //     console.log(counterState);
+    // }
+    function onChangeInput(value: string, title: string) {
+        if (title === "max") {
+            counterState.maxValue = +value
+        } else if (title === "min") {
+            counterState.startValue = +value
+        } else {
+            alert("Get Error Title")
+        }
         counterState.countValue = "enter values and press set";
-        setCounterState({...counterState})
+        setCounterState({... counterState})
         checkedIncorrectValues();
     }
 
-    function onChangeInputStartValue(value: string) {
-        counterState.startValue = +value
-        counterState.countValue = "enter values and press set";
-        setCounterState({...counterState})
-        checkedIncorrectValues();
-    }
 
     function setStartValue() {
         counterState.countValue = counterState.startValue
@@ -70,8 +89,7 @@ function App() {
             <Settings
                 setStartValue={setStartValue}
                 counterState={counterState}
-                onChangeInputMaxValue={onChangeInputMaxValue}
-                onChangeInputStartValue={onChangeInputStartValue}
+                onChangeInput={onChangeInput}
             />
             <Counter
                 counterState={counterState}

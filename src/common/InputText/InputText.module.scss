@@ -1,0 +1,29 @@
+.inputText{
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  outline: none;
+  height: 24px;
+  color: #535151;
+  font-size: 24px;
+  text-align: center;
+  box-sizing: border-box;
+  &:focus{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+}
+
+.error{
+  color: #000000;
+  border: 1px solid #ff0000;
+  background-color: red;
+  &:focus{
+    box-shadow: 0 0 10px rgba(129, 0, 0, 0.5);
+  }
+}
+
+@media (max-width: 650px) {
+  .inputText{
+    width: 100%;
+  }
+}
+
